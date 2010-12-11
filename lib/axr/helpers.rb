@@ -137,7 +137,7 @@ module AjaxfulRating # :nodoc:
     def ratings_for(*args)
       @axr_css ||= CSSBuilder.new
       options = args.extract_options!.symbolize_keys.slice(:size, :url, :method,
-        :wrap, :show_user_rating, :dimension, :force_static, :current_user)
+        :wrap, :show_user_rating, :dimension, :force_static, :current_user, :show_my_value, :my_value)
       rateable = args.shift
       user = args.shift || (respond_to?(:current_user) ? current_user : raise(NoUserSpecified))
       StarsBuilder.new(rateable, user, self, @axr_css, options).render

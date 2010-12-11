@@ -11,7 +11,9 @@ module AjaxfulRating # :nodoc:
     end
     
     def show_value
-      if options[:show_user_rating]
+      if options[:show_my_value]
+        rate = options[:my_value]
+      elsif options[:show_user_rating]
         rate = rateable.rate_by(user, options[:dimension]) if user
         rate ? rate.stars : 0
       else
@@ -33,7 +35,9 @@ module AjaxfulRating # :nodoc:
         :size => nil,
         :show_user_rating => false,
         :force_static => false,
-        :current_user => @user
+        :current_user => @user,
+        :show_my_value => false,
+        :my_value => 0
       }.merge(options)
       
       @options[:show_user_rating] = @options[:show_user_rating].to_s == 'true'
